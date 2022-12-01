@@ -22,11 +22,11 @@ function addItem() {
   } else {
     alert.innerText = "Please enter the URL";
     alert.style.color = "Red"
+    
     setTimeout(() => {
-        alert.innerText = "Add Product"
         alert.style.color = "White"
+        alert.innerText = "Add Product"
     }, 2000);
-
   }
 }
 
