@@ -1,26 +1,67 @@
+const addBtn = document.querySelector(".add-button");
+const imageContainer = document.querySelector("#box");
+const btns = document.querySelectorAll(".btn");
 
+let arr = [];
 
-const inputForm = document.getElementById("input-form");
-
-inputForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-    const URL = document.getElementById("url").value;
-    const productsList = document.querySelector('.products')
-
-    if(URL === ""){
-        //    alert('no url present');
-        console.log('hey')
-    } else {
-        let newHTML = `<div class="item">
-        <img src="" alt="Products" class="image">
-        <button id= "delete-btn">Delete</button>
+function addItem() {
+  let url = document.querySelector("#url").value;
+  let type = document.querySelector("#category").value;
+  let alert = document.querySelector('main > h3');
+  if (url!= "") {
+    arr.push({
+        url: url,
+        type: type,
+      });
+    
+      imageContainer.innerHTML += 
+      ` <div class = "box-img ${type}">
+        <img src = "${url}" alt = "">
+        <button class = "delete"> Delete </button>
         </div>`;
-        const img = document.querySelector('.image')
-        productsList.innerHTML+= newHTML;
-        img.src= URL;
-        // const type = document.querySelector('#category')
-        // console.log(type)
-        // img.classList = type.value;
+  } else {
+    alert.innerText = "Please enter the URL";
+    alert.style.color = "Red"
+    setTimeout(() => {
+        alert.innerText = "Add Product"
+        alert.style.color = "White"
+    }, 2000);
 
+  }
+}
+
+// const delteBtn = document.querySelectorAll('.delete'); --->  wrong
+//  we cannot  select dynamically  created  element
+
+function deleteItem(e) {
+  if (e.target.classList.contains("delete")) {
+    let imgSrc = e.target.previousElementSibling.src;
+    let deleteIndex = arr.findIndex((item) => item.url === imgSrc);
+    arr.splice(deleteIndex, 1);
+    e.target.parentNode.remove();
+  }
+}
+
+function hideShowImages(e) {
+
+  let imgs = document.querySelectorAll(".box-img");
+  let filter = e.target.dataset.filter;
+
+  imgs.forEach((item) => {
+    if (filter === "all") {
+      item.style.display = "flex";
+    } else if (item.classList.contains(filter)) {
+      item.style.display = "flex";
+    } else {
+      item.style.display = "none";
     }
+  });
+}
+
+imageContainer.addEventListener("click", deleteItem);
+
+addBtn.addEventListener("click", addItem);
+
+btns.forEach((bt) => {
+  bt.addEventListener("click", hideShowImages);
 });

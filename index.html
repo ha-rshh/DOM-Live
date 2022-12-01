@@ -12,33 +12,30 @@
       <h1>Filterable Gallery</h1>
     </header>
     <main>
-      <section class="add-product">
-        <h3>Add Product</h3>
-        <div class="input">
-          <form id="input-form">
-            Enter Image URL : <input type="text" name="url" id="url" class="input">
-            Select Type :
-            <select name="category" id="category">
-              <option value="select">Select</option>
+      <h3>Add Product</h3>
+      <section class="add">
+            <label>Enter Image URL :</label> 
+            <input type="text" name="url" id="url" class="input">
+            <label>Select Type :</label>
+            <select id="category">
               <option value="mobile">Mobile</option>
-              <option value="headphones">Headphones</option>
-              <option value="laptops">Laptops</option>
+              <option value="headphone">Headphones</option>
+              <option value="laptop">Laptops</option>
             </select>
-            <button type="submit" id="add-image" class="add-button">Add</button>
-          </form>
+            <button class="add-button">Add</button>
         </div>
       </section>
-      <section class="product-filter">
-        <div class="buttons">
-          <button class="filter-button">All</button>
-          <button class="filter-button">Mobile</button>
-          <button class="filter-button">Headphones</button>
-          <button class="filter-button">Laptops</button>
-        </div>
-        <div class="products">
-        </div>
+
+      <section class="filter">
+          <button class="btn" data-filter="all">All</button>
+          <button class="btn" data-filter="mobile">Mobile</button>
+          <button class="btn" data-filter="headphone">Headphones</button>
+          <button class="btn" data-filter="laptop">Laptops</button>
       </section>
+
+        <section class="img-div" id = "box">
+        </section>
     </main>
-    <script src="script.js"></script>
   </body>
+  <script src="script.js"></script>
 </html>
